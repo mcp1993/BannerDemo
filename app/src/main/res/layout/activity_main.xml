@@ -6,7 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.mcp1993.bannerdemo.MainActivity">
-
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="afdsfasdfasdfa"/>
     <com.mcp1993.bannerdemo.Banner
         android:id="@+id/banner"
         android:layout_width="match_parent"
@@ -15,4 +19,8 @@
         android:id="@+id/headerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></com.mcp1993.bannerdemo.RollHeaderView>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v4.view.ViewPager>
 </LinearLayout>

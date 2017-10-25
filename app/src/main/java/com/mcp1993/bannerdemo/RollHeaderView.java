@@ -19,6 +19,9 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ */
 public class RollHeaderView extends FrameLayout implements OnPageChangeListener {
 
     private Context mContext;
@@ -52,15 +55,14 @@ public class RollHeaderView extends FrameLayout implements OnPageChangeListener 
     }
 
     //初始化view
-    private void initView() {
+    private void initView(){
         View.inflate(mContext, R.layout.view_header, this);
         mViewPager = (ViewPager) findViewById(R.id.vp);
         mDotLl = (LinearLayout) findViewById(R.id.ll_dot);
 
-
+        //让banner的高度是屏幕�?1/4
         ViewGroup.LayoutParams vParams = mViewPager.getLayoutParams();
-//        vParams.height = (int) (DisplayUtil.getMobileHeight(mContext) * 0.4);
-        vParams.height = (int) (DisplayUtil.getMobileWidth(mContext) / 2);
+        vParams.height = (int) (DisplayUtil.getMobileHeight(mContext) * 0.25);
         mViewPager.setLayoutParams(vParams);
     }
 
@@ -99,9 +101,9 @@ public class RollHeaderView extends FrameLayout implements OnPageChangeListener 
                 }
                 //设置点的间距
                 params.setMargins(0, 0, DisplayUtil.dip2px(mContext, 5), 0);
-
-                params.height = 40;
-                params.width = 40;
+               
+                params.height=40; 
+                params.width=40;
                 dotIv.setLayoutParams(params);
 
                 //添加点到view�?
@@ -115,7 +117,9 @@ public class RollHeaderView extends FrameLayout implements OnPageChangeListener 
         mViewPager.setAdapter(mAdapter);
 
         //设置viewpager初始位置, +10000就够�?
-        mViewPager.setCurrentItem(urlList.size() + 10000);
+//        mViewPager.setCurrentItem(urlList.size() + 9999);
+        //每次打开都会显示Viewpager第一页
+        mViewPager.setCurrentItem((mAdapter.getCount()/2)-(mAdapter.getCount()/2)%urlList.size());
         startRoll();
     }
 
@@ -221,9 +225,7 @@ public class RollHeaderView extends FrameLayout implements OnPageChangeListener 
                             long moveTime = System.currentTimeMillis();
                             if (downX == moveX && (moveTime - downTime < 500)) {//点击的条�?
                                 //轮播图回调点击事�?
-                                if (headerViewClickListener != null) {
-                                    headerViewClickListener.HeaderViewClick(position % mUrlList.size());
-                                }
+                                headerViewClickListener.HeaderViewClick(position % mUrlList.size());
                             }
                             break;
                         case MotionEvent.ACTION_CANCEL:
@@ -235,9 +237,9 @@ public class RollHeaderView extends FrameLayout implements OnPageChangeListener 
             });
 
             //加载图片
-//
+        
 //            Picasso.with(mContext).load(mUrlList.get(position % mUrlList.size()))
-//                    .into(iv);
+//             .into(iv);
 //            ((ViewPager) container).addView(iv);
 
 //            return iv;
@@ -245,7 +247,7 @@ public class RollHeaderView extends FrameLayout implements OnPageChangeListener 
             .error(R.mipmap.ic_launcher).into(iv);
 
     ((ViewPager) container).addView(iv);
-
+//
     return iv;
         }
 
