@@ -1,5 +1,6 @@
 package com.mcp1993.bannerdemo;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +26,13 @@ public class MainActivity extends AppCompatActivity {
         headerView = (RollHeaderView) findViewById(R.id.headerView);
         banner = (Banner) findViewById(R.id.banner);
         viewpager = (ViewPager) findViewById(R.id.viewpager);
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,PhotoViewActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
