@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,PhotoViewActivity.class);
+                Intent intent = new Intent(MainActivity.this,BigImgAcitiviy.class);
                 startActivity(intent);
             }
         });
